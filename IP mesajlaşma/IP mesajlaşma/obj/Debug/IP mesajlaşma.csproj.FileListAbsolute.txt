@@ -1,0 +1,13 @@
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\bin\Debug\IP mesajlaşma.exe.config
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\bin\Debug\IP mesajlaşma.exe
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\bin\Debug\IP mesajlaşma.pdb
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\bin\Debug\SimpleTCP.dll
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\obj\Debug\IP mesajlaşma.csproj.AssemblyReference.cache
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\obj\Debug\IP mesajlaşma.csproj.SuggestedBindingRedirects.cache
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\obj\Debug\IP_mesajlaşma.Form1.resources
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\obj\Debug\IP_mesajlaşma.Properties.Resources.resources
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\obj\Debug\IP mesajlaşma.csproj.GenerateResource.cache
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\obj\Debug\IP mesajlaşma.csproj.CoreCompileInputs.cache
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\obj\Debug\IP mesajlaşma.csproj.CopyComplete
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\obj\Debug\IP mesajlaşma.exe
+C:\Users\Huawei\OneDrive\Masaüstü\VisualStudio\IP mesajlaşma\IP mesajlaşma\obj\Debug\IP mesajlaşma.pdb
