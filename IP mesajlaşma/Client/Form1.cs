@@ -52,10 +52,23 @@ namespace Client
             komut.Parameters.AddWithValue("@IPAddress", label3.Text);
             komut.Parameters.AddWithValue("@PcAdi", bilgisayarAdi);
             //Parametrelerimize Form üzerinde ki kontrollerden girilen verileri aktarıyoruz.
-            
-            komut.ExecuteNonQuery();
+            //----------------
+            string kayit_buton = "SELECT PcAdi from IPmesajlasma";
+            //musteriler tablosundaki tüm kayıtları çekecek olan sql sorgusu.
+            SqlCommand komut_buton = new SqlCommand(kayit_buton, baglanti);
+            //Sorgumuzu ve baglantimizi parametre olarak alan bir SqlCommand nesnesi oluşturuyoruz.
+            SqlDataAdapter da = new SqlDataAdapter(komut_buton);
+            //SqlDataAdapter sınıfı verilerin databaseden aktarılması işlemini gerçekleştirir.
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            //Bir DataTable oluşturarak DataAdapter ile getirilen verileri tablo içerisine dolduruyoruz.
+            dataGridView1.DataSource = dt;
+            //Formumuzdaki DataGridViewin veri kaynağını oluşturduğumuz tablo olarak gösteriyoruz.
+            //komut.ExecuteNonQuery();
             //Veritabanında değişiklik yapacak komut işlemi bu satırda gerçekleşiyor.
             baglanti.Close();
+            //----------------
+            
 
         }
 
@@ -69,27 +82,13 @@ namespace Client
             //UTF-8, geniş bir karakter kümesini destekleyen bir metin kodlama biçimidir
             client.DataReceived += Client_DataReceived;
             //işleyici ekler. sunucudan gelen verilerin işlenmesi ve kullanıcı arabirimine gösterilmesi için kullanılır.
+
             string bilgisayarAdi = Dns.GetHostName();
             string ipAdresi = Dns.GetHostByName(bilgisayarAdi).AddressList[0].ToString();
             label3.Text = ipAdresi;
-
             //bilgisayarın ıp adresini bulup yazar
             button2.Enabled = false;
 
-
-            baglanti.Open();
-            string kayit_buton = "SELECT PcAdi from IPmesajlasma";
-            //musteriler tablosundaki tüm kayıtları çekecek olan sql sorgusu.
-            SqlCommand komut_buton = new SqlCommand(kayit_buton, baglanti);
-            //Sorgumuzu ve baglantimizi parametre olarak alan bir SqlCommand nesnesi oluşturuyoruz.
-            SqlDataAdapter da = new SqlDataAdapter(komut_buton);
-            //SqlDataAdapter sınıfı verilerin databaseden aktarılması işlemini gerçekleştirir.
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            //Bir DataTable oluşturarak DataAdapter ile getirilen verileri tablo içerisine dolduruyoruz.
-            dataGridView1.DataSource = dt;
-            //Formumuzdaki DataGridViewin veri kaynağını oluşturduğumuz tablo olarak gösteriyoruz.
-            baglanti.Close();
 
         }
 
@@ -130,18 +129,20 @@ namespace Client
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int id = 1;
-            try
-            {
-                SqlCommand cıkıs = new SqlCommand("DELETE FROM (IPAddress, PcAdi) WHERE IPAddress=" + id + "", baglanti);
-                baglanti.Open();
-                cıkıs.ExecuteNonQuery();
-                baglanti.Close();
-                MessageBox.Show("Tamamlandı");
-            }catch 
-            {
-                MessageBox.Show("Kayıt silinmedi");
-            }
+            //IP 1 den başlamıyor. Veritabanına IP ekle----------------------------------------
+
+            //int id = 1;
+            //try
+            //{
+            //    SqlCommand cıkıs = new SqlCommand("DELETE FROM (IPAddress, PcAdi) WHERE IPAddress=" + id + "", baglanti);
+            //    baglanti.Open();
+            //    cıkıs.ExecuteNonQuery();
+            //    baglanti.Close();
+            //    MessageBox.Show("Tamamlandı");
+            //}catch 
+            //{
+            //    MessageBox.Show("Kayıt silinmedi");
+            //}
             
 
             this.Close();
