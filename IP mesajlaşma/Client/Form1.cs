@@ -17,9 +17,11 @@ namespace Client
     public partial class Form1 : Form
     {
         SimpleTcpClient client;
-        //Kütüphaneye ait bir sınıf.
-        //TCP/IP tabanlı iletişimi basitleştiren, kolaylaştıran işlevlere sahip, ağ üzerinde veri iletişimini sağlayan ve internetin temel protokollerinden biri.
-        //sunucuyla iletişimi yönetmek ve mesaj gönderme/alma işlemlerini gerçekleştirmek için kullanılacaktır.
+
+        /*Kütüphaneye ait bir sınıf.
+        TCP/IP tabanlı iletişimi basitleştiren, kolaylaştıran işlevlere sahip, ağ üzerinde veri iletişimini sağlayan ve internetin temel protokollerinden biri.
+        sunucuyla iletişimi yönetmek ve mesaj gönderme/alma işlemlerini gerçekleştirmek için kullanılacaktır.*/
+        [Obsolete]
         public Form1()
         {
             InitializeComponent();
@@ -38,19 +40,19 @@ namespace Client
             button1.Enabled = false;
             button2.Enabled = true;
 
-            // IP adresi ve bilgisayar adı ekleme işlemi
-            if (baglanti.State == ConnectionState.Closed)
-                baglanti.Open();
+            //// IP adresi ve bilgisayar adı ekleme işlemi
+            //if (baglanti.State == ConnectionState.Closed)
+            //    baglanti.Open();
 
-            string kayit = "INSERT INTO IPmesajlasma(IPAddress, PcAdi) VALUES (@IPAddress, @PcAdi)";
-            SqlCommand komut = new SqlCommand(kayit, baglanti);
-            string bilgisayarAdi = Dns.GetHostName();
-            komut.Parameters.AddWithValue("@IPAddress", label3.Text);
-            komut.Parameters.AddWithValue("@PcAdi", bilgisayarAdi);
-            komut.ExecuteNonQuery();
-            baglanti.Close();
+            //string kayit = "INSERT INTO IPmesajlasma(IPAddress, PcAdi) VALUES (@IPAddress, @PcAdi)";
+            //SqlCommand komut = new SqlCommand(kayit, baglanti);
+            //string bilgisayarAdi = Dns.GetHostName();
+            //komut.Parameters.AddWithValue("@IPAddress", label3.Text);
+            //komut.Parameters.AddWithValue("@PcAdi", bilgisayarAdi);
+            //komut.ExecuteNonQuery();
+            //baglanti.Close();
 
-            // Verileri DataGridView'e getirme işlemi
+            //Verileri DataGridView'e getirme işlemi
             if (baglanti.State == ConnectionState.Closed)
                 baglanti.Open();
 
@@ -74,8 +76,6 @@ namespace Client
             client.StringEncoder = Encoding.UTF8;
             //gönderilen ve alınan metin verilerinin UTF-8 karakter kodlaması kullanılarak işlenmesini sağlar.
             //UTF-8, geniş bir karakter kümesini destekleyen bir metin kodlama biçimidir
-            client.DataReceived += Client_DataReceived;
-            //işleyici ekler. sunucudan gelen verilerin işlenmesi ve kullanıcı arabirimine gösterilmesi için kullanılır.
 
             string bilgisayarAdi = Dns.GetHostName();
             string ipAdresi = Dns.GetHostByName(bilgisayarAdi).AddressList[0].ToString();
@@ -84,15 +84,6 @@ namespace Client
             button2.Enabled = false;
 
 
-        }
-
-        private void Client_DataReceived(object sender, SimpleTCP.Message e)
-        {
-            textBox4.Invoke((MethodInvoker)delegate ()
-            {
-                textBox4.Text += e.MessageString;
-            });
-            //istemci tarafından sunucudan alınan verilerin işlenmesi ve textBox4 e yazılmasını sağlar
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -106,13 +97,7 @@ namespace Client
                 var reply = client.WriteLineAndGetReply(message, TimeSpan.FromSeconds(3));
                 //mesajı belirtilen sürede gönderir
                 string bilgisayarAdi = Dns.GetHostName();
-                textBox4.Text += bilgisayarAdi + ": "  + message + "\r\n";
-
-                if (reply != null)
-                //sunucudan cevap alındıysa..
-                {
-                    textBox4.Text += "Received: " + reply.MessageString + "\r\n";
-                }
+                textBox4.Text += bilgisayarAdi + ": " + message + "\r\n";
             }
             else
             {
@@ -123,23 +108,30 @@ namespace Client
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //IP 1 den başlamıyor. Veritabanına IP ekle----------------------------------------
+            // Silinecek kayıt için IP adresini alın
+            string IPsil = label3.Text;
 
-            //int id = 1;
-            //try
-            //{
-            //    SqlCommand cıkıs = new SqlCommand("DELETE FROM (IPAddress, PcAdi) WHERE IPAddress=" + id + "", baglanti);
-            //    baglanti.Open();
-            //    cıkıs.ExecuteNonQuery();
-            //    baglanti.Close();
-            //    MessageBox.Show("Tamamlandı");
-            //}catch 
-            //{
-            //    MessageBox.Show("Kayıt silinmedi");
-            //}
-            
+            // Veritabanı bağlantısını açın ve kaydı silin
 
+            if (baglanti.State == ConnectionState.Closed)
+                baglanti.Open();
+
+            string deleteCommand = "DELETE FROM IPmesajlasma WHERE IPAddress = @IPAddress";
+            SqlCommand deleteKomut = new SqlCommand(deleteCommand, baglanti);
+            deleteKomut.Parameters.AddWithValue("@IPAddress", IPsil);
+            baglanti.Close();
+            // Formu kapatın
             this.Close();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
