@@ -44,10 +44,10 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button1.Location = new System.Drawing.Point(528, 21);
+            this.button1.Location = new System.Drawing.Point(502, 12);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 38);
+            this.button1.Size = new System.Drawing.Size(111, 47);
             this.button1.TabIndex = 0;
             this.button1.Text = "Başlat";
             this.button1.UseVisualStyleBackColor = false;
