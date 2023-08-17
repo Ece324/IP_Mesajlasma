@@ -70,8 +70,7 @@ namespace IP_mesajlaşma
             ////bağlantı cümlemizi kullanarak bir SqlConnection bağlantısı oluşturuyoruz.
 
             // Bağlantı işlemini gerçekleştiren kodlarserver.Start(IPAddress.Parse(label3.Text), Convert.ToInt32(textBox2.Text));
-            // Sunucuyu başlatmak için Start yöntemini kullanın.
-            // IPAddress.Parse(label3.Text) ile IP adresini doğru bir şekilde dönüştürdüğünüzden emin olun.
+            // Sunucuyu başlatmak için Start yöntemini kullan.
 
 
             button1.Enabled = false;
@@ -91,7 +90,7 @@ namespace IP_mesajlaşma
             string ipAddressStr = label3.Text;
             if (System.Net.IPAddress.TryParse(ipAddressStr, out System.Net.IPAddress ipAddress))
             {
-                textBox3.Text += "Server başladı..."+ Environment.NewLine;
+                textBox3.Text += "Server başladı..." + Environment.NewLine;
                 server.Start(ipAddress, Convert.ToInt32(textBox2.Text));
                 button1.Enabled = false;
             }
@@ -119,5 +118,23 @@ namespace IP_mesajlaşma
             }
         }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SqlConnection baglanti = new SqlConnection(@"Data Source=LAPTOP-6SP56EO4\SQLEXPRESS;Initial Catalog=IPmesajlasma;Integrated Security=True");
+            baglanti.Open();
+
+            string kayit_buton = "SELECT PcAdi FROM IPmesajlasma";
+            SqlCommand komut_buton = new SqlCommand(kayit_buton, baglanti);
+            SqlDataAdapter da = new SqlDataAdapter(komut_buton);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+            baglanti.Close();
+        }
     }
 }

@@ -47,7 +47,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(300, 23);
+            this.label2.Location = new System.Drawing.Point(316, 29);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 19);
@@ -56,7 +56,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(365, 23);
+            this.textBox2.Location = new System.Drawing.Point(365, 29);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(186, 27);
@@ -66,7 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 23);
+            this.label1.Location = new System.Drawing.Point(26, 37);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 19);
@@ -76,7 +76,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button1.Location = new System.Drawing.Point(594, 13);
+            this.button1.Location = new System.Drawing.Point(597, 23);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 46);
@@ -92,6 +92,8 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(553, 42);
             this.textBox3.TabIndex = 10;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
             // 
             // button2
             // 
@@ -108,7 +110,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(59, 23);
+            this.label3.Location = new System.Drawing.Point(61, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(25, 19);
             this.label3.TabIndex = 13;
@@ -117,11 +119,11 @@
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(30, 66);
+            this.textBox4.Location = new System.Drawing.Point(30, 82);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox4.Size = new System.Drawing.Size(673, 336);
+            this.textBox4.Size = new System.Drawing.Size(673, 320);
             this.textBox4.TabIndex = 12;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
@@ -140,7 +142,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(737, 40);
+            this.label5.Location = new System.Drawing.Point(750, 37);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 19);
             this.label5.TabIndex = 17;
@@ -149,11 +151,11 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(719, 66);
+            this.dataGridView1.Location = new System.Drawing.Point(719, 82);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(174, 336);
+            this.dataGridView1.Size = new System.Drawing.Size(174, 320);
             this.dataGridView1.TabIndex = 18;
             // 
             // Form1

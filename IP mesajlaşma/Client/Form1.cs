@@ -64,7 +64,8 @@ namespace Client
             dataGridView1.DataSource = dt;
 
             baglanti.Close();
-
+            //string bilgisayarAdi = Dns.GetHostName();
+            //bilgisayarAdi = textBox1.Text;
 
         }
 
@@ -82,8 +83,44 @@ namespace Client
             label3.Text = ipAdresi;
             //bilgisayarın ıp adresini bulup yazar
             button2.Enabled = false;
+        }
 
 
+        private string connectionString = @"Data Source=LAPTOP-6SP56EO4\SQLEXPRESS;Initial Catalog=IPmesajlasma;Integrated Security=True";
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            // Silinecek kayıt için IP adresini alın
+            string IPsil = label3.Text;
+
+            // Veritabanı bağlantısını açın ve kaydı silin
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string deleteCommand = "DELETE FROM IPmesajlasma WHERE IPAddress = @IPAddress";
+                SqlCommand deleteKomut = new SqlCommand(deleteCommand, connection);
+                deleteKomut.Parameters.AddWithValue("@IPAddress", IPsil);
+                deleteKomut.ExecuteNonQuery();
+            }
+
+            // Formu kapatın
+            this.Close();
+        }
+
+
+
+        private void textBox3_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Enter tuşuna basılmasının alt satıra geçmesini engelle
+
+                // Mesajı gönderme işlemini gerçekleştir
+                button2.PerformClick();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -94,10 +131,24 @@ namespace Client
             {
                 string message = textBox3.Text;
                 //mesajı değişkene atar
-                var reply = client.WriteLineAndGetReply(message, TimeSpan.FromSeconds(3));
+                //var reply = client.WriteLineAndGetReply(message, TimeSpan.FromSeconds(3));
                 //mesajı belirtilen sürede gönderir
-                string bilgisayarAdi = Dns.GetHostName();
-                textBox4.Text += bilgisayarAdi + ": " + message + "\r\n";
+                //if (baglanti.State == ConnectionState.Closed)
+                //    baglanti.Open();
+
+                //string kayit_buton = "SELECT PcAdi FROM IPmesajlasma";
+                //SqlCommand komut_buton = new SqlCommand(kayit_buton, baglanti);
+                //SqlDataAdapter da = new SqlDataAdapter(komut_buton);
+                //DataTable dt = new DataTable();
+                //da.Fill(dt);
+
+                Giris ad = new Giris();
+                textBox4.Text += ad.bilgisayarAdi().ToString() + ": " + message + "\r\n";
+                baglanti.Close();
+
+                //Giris grs = new Giris();
+                //textBox4.Text += kullaniciBilgisayarAdi + ": " + message + "\r\n";
+                //baglanti.Close();
             }
             else
             {
@@ -105,31 +156,19 @@ namespace Client
             }
             textBox3.Text = "";
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            // Silinecek kayıt için IP adresini alın
-            string IPsil = label3.Text;
-
-            // Veritabanı bağlantısını açın ve kaydı silin
-
-            if (baglanti.State == ConnectionState.Closed)
-                baglanti.Open();
-
-            string deleteCommand = "DELETE FROM IPmesajlasma WHERE IPAddress = @IPAddress";
-            SqlCommand deleteKomut = new SqlCommand(deleteCommand, baglanti);
-            deleteKomut.Parameters.AddWithValue("@IPAddress", IPsil);
-            baglanti.Close();
-            // Formu kapatın
-            this.Close();
-        }
-
         private void label3_Click(object sender, EventArgs e)
         {
 
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
