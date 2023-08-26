@@ -24,24 +24,13 @@ namespace Client
         //Sql Servera bağlanırken kullandığımız bilgileri ve veritabanı ismini yazıyoruz.
         SqlConnection baglanti = new SqlConnection(@"Data Source=LAPTOP-6SP56EO4\SQLEXPRESS;Initial Catalog=IPmesajlasma;Integrated Security=True");
         ////bağlantı cümlemizi kullanarak bir SqlConnection bağlantısı oluşturuyoruz.
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         string sifre = "1234";
-        private string kullaniciBilgisayarAdi = "";
         private void button1_Click(object sender, EventArgs e)
         {
             
             if (textBox1.Text == sifre)
             {
-                kullaniciBilgisayarAdi = textBox4.Text;
-
-                //Form1 frm1 = new Form1(kullaniciBilgisayarAdi);
-
                 Form1 frm = new Form1();
-                //frm.Show();
-                //this.Hide();
                 string kullaniciAdi = textBox4.Text;
 
                 // IP adresi ve bilgisayar adı ekleme işlemi
@@ -67,11 +56,6 @@ namespace Client
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             if (textBox3.Text == sifre)
@@ -84,11 +68,6 @@ namespace Client
                 MessageBox.Show("Yanlış şifre");
             }
         }
-        public string bilgisayarAdi()
-        {
-            string bilgisayarAdi = textBox4.Text;
-            return bilgisayarAdi;
-        }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -96,11 +75,6 @@ namespace Client
             {
                 button1.PerformClick();
             }
-        }
-
-        private void Giris_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

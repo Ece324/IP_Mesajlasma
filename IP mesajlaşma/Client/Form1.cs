@@ -40,18 +40,6 @@ namespace Client
             button1.Enabled = false;
             button2.Enabled = true;
 
-            //// IP adresi ve bilgisayar adı ekleme işlemi
-            //if (baglanti.State == ConnectionState.Closed)
-            //    baglanti.Open();
-
-            //string kayit = "INSERT INTO IPmesajlasma(IPAddress, PcAdi) VALUES (@IPAddress, @PcAdi)";
-            //SqlCommand komut = new SqlCommand(kayit, baglanti);
-            //string bilgisayarAdi = Dns.GetHostName();
-            //komut.Parameters.AddWithValue("@IPAddress", label3.Text);
-            //komut.Parameters.AddWithValue("@PcAdi", bilgisayarAdi);
-            //komut.ExecuteNonQuery();
-            //baglanti.Close();
-
             //Verileri DataGridView'e getirme işlemi
             if (baglanti.State == ConnectionState.Closed)
                 baglanti.Open();
@@ -131,46 +119,16 @@ namespace Client
             {
                 string message = textBox3.Text;
                 //mesajı değişkene atar
-                //var reply = client.WriteLineAndGetReply(message, TimeSpan.FromSeconds(3));
-                //mesajı belirtilen sürede gönderir
-                //if (baglanti.State == ConnectionState.Closed)
-                //    baglanti.Open();
 
-                //string kayit_buton = "SELECT PcAdi FROM IPmesajlasma";
-                //SqlCommand komut_buton = new SqlCommand(kayit_buton, baglanti);
-                //SqlDataAdapter da = new SqlDataAdapter(komut_buton);
-                //DataTable dt = new DataTable();
-                //da.Fill(dt);
-
-                Giris ad = new Giris();
-                textBox4.Text += ad.bilgisayarAdi().ToString() + ": " + message + "\r\n";
+                string bilgisayarAdi = Dns.GetHostName();
+                textBox4.Text +=bilgisayarAdi.ToString() + ": " + message + "\r\n";
                 baglanti.Close();
-
-                //Giris grs = new Giris();
-                //textBox4.Text += kullaniciBilgisayarAdi + ": " + message + "\r\n";
-                //baglanti.Close();
             }
             else
             {
                 MessageBox.Show("Sunucuya bağlanılmadı. Lütfen bağlantıyı sağlayın.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             textBox3.Text = "";
-        }
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
